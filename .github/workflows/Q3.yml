@@ -22,6 +22,6 @@ jobs:
           git config user.name "LorenzoDMFR"
           git config user.email "lorenzo.de-macedo@etu.univ-lehavre.fr"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/LorenzoDMFR/R5-09-DS.git
-          git add Q3_archive_README.md
+          git add Q3_archive_java.txt
           git commit -m "Ajout de Q3_archive_java.txt"
           git push
