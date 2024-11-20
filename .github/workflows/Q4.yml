@@ -12,16 +12,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Create Q4_archive_date.txt
+      - name: Create Q4_archive_${DATE}.txt
         run: |
-          echo "Nom et prenom: Lorenzo DE MACEDO" > Q4_archive_"Date: $(date +'%d-%m-%Y')".txt
-          cat Q4.java >> Q4_archive_"Date: $(date +'%d-%m-%Y')".txt
+          # Générer la date au format JJ-MM-AAAA
+          DATE=$(date +'%d-%m-%Y')
+          FILE_NAME="Q4_archive_${DATE}.txt"
+          
+          # Créer le fichier et ajouter les informations demandées
+          echo "Nom: Lorenzo DE MACEDO" > $FILE_NAME
+          cat Q4.java >> $FILE_NAME
 
-      - name: Push new file
-        run: |
+          # Pousser le fichier dans le dépôt
           git config user.name "LorenzoDMFR"
           git config user.email "lorenzo.de-macedo@etu.univ-lehavre.fr"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/LorenzoDMFR/R5-09-DS.git
-          git add Q4_archive_"Date: $(date +'%d-%m-%Y')".txt
-          git commit -m "Add Q4_archive_"Date: $(date +'%d-%m-%Y')".txt"
+          git add $FILE_NAME
+          git commit -m "Ajout de $FILE_NAME"
           git push
