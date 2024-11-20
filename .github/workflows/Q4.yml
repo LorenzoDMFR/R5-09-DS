@@ -14,8 +14,7 @@ jobs:
 
       - name: Create Q4_archive_date.txt
         run: |
-          echo "Nom et prenom: Lorenzo DE MACEDO" > Q4_archive_date.txt
-          echo "Date: $(date +'%d-%m-%Y')" >> Q4_archive_date.txt
+          echo "Nom et prenom: Lorenzo DE MACEDO" > Q4_archive_"Date: $(date +'%d-%m-%Y')".txt
           cat Q4.java >> Q4_archive_date.txt
 
       - name: Push new file
