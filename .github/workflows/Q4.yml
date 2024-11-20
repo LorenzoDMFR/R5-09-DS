@@ -15,13 +15,13 @@ jobs:
       - name: Create Q4_archive_date.txt
         run: |
           echo "Nom et prenom: Lorenzo DE MACEDO" > Q4_archive_"Date: $(date +'%d-%m-%Y')".txt
-          cat Q4.java >> Q4_archive_date.txt
+          cat Q4.java >> Q4_archive_"Date: $(date +'%d-%m-%Y')".txt
 
       - name: Push new file
         run: |
           git config user.name "LorenzoDMFR"
           git config user.email "lorenzo.de-macedo@etu.univ-lehavre.fr"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/LorenzoDMFR/R5-09-DS.git
-          git add Q4_archive_date.txt
-          git commit -m "Add Q4_archive_date.txt"
+          git add Q4_archive_"Date: $(date +'%d-%m-%Y')".txt
+          git commit -m "Add Q4_archive_"Date: $(date +'%d-%m-%Y')".txt"
           git push
