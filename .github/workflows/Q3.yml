@@ -1,0 +1,27 @@
+name: Q3 Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  archive-java:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create Q3_archive_java.txt
+        run: |
+          echo "Nom et prenom: Lorenzo DE MACEDO" > Q3_archive_java.txt
+          cat Q3.java >> Q3_archive_java.txt
+
+      - name: Push new file
+        run: |
+          git config user.name "LorenzoDMFR"
+          git config user.email "lorenzo.de-macedo@etu.univ-lehavre.fr"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/LorenzoDMFR/R5-09-DS.git
+          git add Q3_archive_README.md
+          git commit -m "Ajout de Q3_archive_README.md"
+          git push
