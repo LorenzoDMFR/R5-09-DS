@@ -21,7 +21,7 @@ jobs:
       - name: Push new file
         run: |
           git config user.name "LorenzoDMFR"
-          git config user.email "lorenzo-de.macedo@etu.univ-lehavre.fr"
+          git config user.email "lorenzo.de-macedo@etu.univ-lehavre.fr"
           git add Q2_archive_README.md
           git commit -m "Add Q2_archive_README.md"
           git push
