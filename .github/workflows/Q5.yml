@@ -1,0 +1,31 @@
+name: Q5 Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  archive-date:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create Q5_archive_${DATE}.txt
+        run: |
+          # Générer la date au format JJ-MM-AAAA
+          DATE=$(date +'%d-%m-%Y')
+          FILE_NAME="Q5_archive_${DATE}.txt"
+          
+          # Créer le fichier et ajouter les informations demandées
+          echo "Nom: Lorenzo DE MACEDO" > $FILE_NAME
+          cat Q5.java >> $FILE_NAME
+
+          # Pousser le fichier dans le dépôt
+          git config user.name "LorenzoDMFR"
+          git config user.email "lorenzo.de-macedo@etu.univ-lehavre.fr"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/LorenzoDMFR/R5-09-DS.git
+          git add $FILE_NAME
+          git commit -m "Ajout de $FILE_NAME"
+          git push
